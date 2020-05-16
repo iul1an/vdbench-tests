@@ -12,12 +12,6 @@ The ***purpose*** of these tests is to evaluate the performance of a shared file
 * Any modern Linux distro on which you can install Java v1.7+
 
 ## Setup
-We assume the following:
-* we had exported a shared filesystem volume (eg: a NFS share)
-* we mounted the volume on both worker1 and worker2 as /vdbench
-* Java is installed on the master and the workers
-* We have enough memory on the workers for the [Vdbench's Java HEAP](https://github.com/iul1an/vdbench-tests/blob/master/vdbench/vdbench#L39)
-
 For running the tests, we will use 3 machines:
 
 | Hostname | Role                                                     |
@@ -25,6 +19,10 @@ For running the tests, we will use 3 machines:
 | master   | Master node, the tests will be initiated from this node  |
 | worker1  | Worker node, this node will actually run the tests       |
 | worker2  | Worker node, this node will actually run the tests       |
+
+We assume the following:
+* Java is installed on all machines and we have enough memory for the [Vdbench's Java HEAP](https://github.com/iul1an/vdbench-tests/blob/master/vdbench/vdbench#L39)
+* we export a shared fs volume and we mount it on both worker1 and worker2 as /vdbench
 
 
 We setup passwordless SSH access between the master and the workers by running the following commands on the master node:
