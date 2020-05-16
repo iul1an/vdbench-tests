@@ -1,4 +1,4 @@
-vdbench_path="$(pwd)/vdbench-tests"
+vdbench_path="$(pwd)/vdbench"
 host1="worker1"
 anchor1="/vdbench/anchor1"
 host2="worker2"

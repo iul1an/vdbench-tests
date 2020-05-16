@@ -46,7 +46,7 @@ git clone git@github.com:iul1an/vdbench-tests.git
 If required, we update the [params](https://github.com/iul1an/vdbench-tests/blob/master/params) file using this reference:
 | Parameter      |  Description                                                         | Default                 | Obs.                                  |
 |----------------|----------------------------------------------------------------------| ------------------------|---------------------------------------|
-| `vdbench_path` | vdbench path on the worker nodes                                     | `$(pwd)/vdbench-tests`  | must be the same path on all nodes    |
+| `vdbench_path` | vdbench path on the worker nodes                                     | `$(pwd)/vdbench`        | must be the same path on all nodes    |
 | `host1`        | first worker's hostname or IP address                                | worker1                 |                                       |
 | `anchor1`      | the directory on which the test files are written on the first host  | /vdbench/anchor1        | anchor1 and anchor2 must be different |
 | `host2`        | second worker's hostname or IP address                               | worker2                 |                                       |
