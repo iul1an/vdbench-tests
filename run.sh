@@ -3,7 +3,7 @@
 source params
 
 for test in tests/distributed/*.vdb ; do
-  vdbench/vdbench -s \
+  vdbench/vdbench \
     vdbench_path=$vdbench_path \
     host1=$host1 \
     host2=$host2 \
@@ -14,7 +14,7 @@ for test in tests/distributed/*.vdb ; do
 done
 
 for test in tests/non-distributed/*.vdb ; do
-  vdbench/vdbench -s \
+  vdbench/vdbench \
     vdbench_path=$vdbench_path \
     host1=$host1 \
     anchor1=$anchor1 \
