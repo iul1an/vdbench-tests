@@ -1,0 +1,29 @@
+# Run paralell random read, write, getattr and operations for 2H, after format, using 100k files
+# Reads:   70%
+# Writes:  15%
+# Getattr: 10%
+# Setattr: 5%
+# This test can only run on one host. Use of FWD skew= currently not supported when running multi-JVM
+
+# total files per anchor = width ^ depth * files
+# totals: dirs: 340; files: 102,400; bytes: 36.177g
+
+# defaults
+messagescan=nodisplay
+create_anchors=yes
+
+# host definition
+hd=default,shell=ssh,user=root,jvms=1,vdbench=$vdbench_path
+hd=hd1,system=$host1
+
+# filesystem definition
+fsd=fsd1,anchor=$anchor1,width=4,depth=4,files=400,sizes=(64k,25,128k,25,256k,25,1m,25),openflags=directio
+
+# filesystem workload definitions
+fwd=fwd1,host=hd1,fsd=fsd1,xfersize=(8k,67,16k,24,24k,3,32k,2,64k,2,96k,1,128k,1),threads=30,fileio=(random,shared),rdpct=100,operation=read,skew=70
+fwd=fwd2,host=hd1,fsd=fsd1,xfersize=(8k,67,16k,24,24k,3,32k,2,64k,2,96k,1,128k,1),threads=10,fileio=(random,shared),rdpct=0,operation=write,skew=15
+fwd=fwd3,host=hd1,fsd=fsd1,xfersize=4k,threads=7,fileio=(random,shared),rdpct=100,operation=getattr,skew=10
+fwd=fwd4,host=hd1,fsd=fsd1,xfersize=4k,threads=3,fileio=(random,shared),rdpct=0,operation=setattr,skew=5
+
+# run definitions
+rd=rd1,fwd=(fwd1,fwd2,fwd3,fwd4),fwdrate=max,format=yes,elapsed=2h,interval=60

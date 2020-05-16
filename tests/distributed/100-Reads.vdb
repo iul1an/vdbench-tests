@@ -1,0 +1,29 @@
+# Run paralell random read operations for 2H, after format, using 3M files evenly spread accross 2 hosts
+# The hosts needs to share the same storage for the test's totals to be relevant
+
+# total files per anchor = width ^ depth * files
+# anchor1: dirs: 340; files: 1,664,000; bytes: 584.853g
+# anchor2: dirs: 340; files: 1,664,000; bytes: 584.853g
+# totals:  dirs: 680; files: 3,328,000; bytes: 1.142t
+
+# defaults
+messagescan=nodisplay
+create_anchors=yes
+
+# host definitions
+hd=default,shell=ssh,user=root,jvms=16,vdbench=$vdbench_path
+hd=hd1,system=$host1
+hd=hd2,system=$host2
+
+# filesystem definitions
+fsd=default,width=4,depth=4,files=6500,sizes=(64k,25,128k,25,256k,25,1m,25),openflags=directio
+fsd=fsd1,anchor=$anchor1
+fsd=fsd2,anchor=$anchor2
+
+# filesystem workload definitions
+fwd=default,xfersize=(8k,67,16k,24,24k,3,32k,2,64k,2,96k,1,128k,1),threads=50,fileio=(random,shared),rdpct=100,operation=read
+fwd=fwd1,host=hd1,fsd=fsd1
+fwd=fwd2,host=hd2,fsd=fsd2
+
+# run definition
+rd=rd1,fwd=fwd*,fwdrate=max,format=yes,elapsed=2h,interval=60

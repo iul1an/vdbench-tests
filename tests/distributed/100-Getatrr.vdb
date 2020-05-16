@@ -1,0 +1,29 @@
+# Run paralell random getattr operations for 2H, after format, using 200k files evenly spread accross 2 hosts
+# The hosts needs to share the same storage for the test's totals to be relevant
+
+# total files per anchor = width ^ depth * files
+# anchor1: dirs: 100; files: 100,000; bytes: 97.656g 
+# anchor2: dirs: 100; files: 100,000; bytes: 97.656g 
+# totals:  dirs: 200; files: 200,000; bytes: 195.313g 
+
+# defaults
+messagescan=nodisplay
+create_anchors=yes
+
+# host definitions
+hd=default,shell=ssh,user=root,jvms=16,vdbench=$vdbench_path
+hd=hd1,system=$host1
+hd=hd2,system=$host2
+
+# filesystem definitions
+fsd=default,width=100,depth=1,files=1000,size=1m,openflags=directio
+fsd=fsd1,anchor=$anchor1
+fsd=fsd2,anchor=$anchor2
+
+# filesystem workload definitions
+fwd=default,xfersize=4k,threads=25,fileio=random,fileselect=random,rdpct=100,operation=getattr
+fwd=fwd1,host=hd1,fsd=fsd1
+fwd=fwd2,host=hd2,fsd=fsd2
+
+# run definitions
+rd=rd1,fwd=fwd*,fwdrate=max,elapsed=2h,interval=60,format=yes
