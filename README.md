@@ -1,7 +1,7 @@
 # vdbench-tests
 This repo contains some of the tests I used to benchmark distributed storage solutions such as Portworx, Ceph and GlusterFS.
 The ***purpose*** of these tests is to evaluate the performance of a shared filesystem by simulating a near real-world workload:
-* multiple hosts are connected to the same storage
+* multiple hosts are connected to the storage volume
 * there are mixed VFS operations running at the same time: read, write, getattr, setattr, delete etc
 * disk access is random
 * the IO size is variable
