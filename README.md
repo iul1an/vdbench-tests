@@ -41,7 +41,7 @@ ssh-copy-id root@worker2
 We clone this repository on each node:
 ```
 cd /opt
-git clone git@github.com:iul1an/vdbench-tests.git
+git clone https://github.com/iul1an/vdbench-tests.git
 ```
 If required, we update the [params](https://github.com/iul1an/vdbench-tests/blob/master/params) file using this reference:
 | Parameter      |  Description                                                         | Default                 | Obs.                                  |
