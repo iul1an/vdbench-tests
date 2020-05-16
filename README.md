@@ -36,7 +36,7 @@ ssh-copy-id root@worker1
 ssh-copy-id root@worker2
 ```
 
-We clone this repository on each node:
+We clone this repository on each node in the same path, eg: /opt:
 ```
 cd /opt
 git clone https://github.com/iul1an/vdbench-tests.git
@@ -63,6 +63,6 @@ The results are in the "results" directory.
 * There is a [Vdbench manual](https://github.com/iul1an/vdbench-tests/blob/master/docs/manual.pdf) in this repo which will help you modify the tests according to your needs, if you set a very large number of files in tests, make sure to also update the Java HEAP size in the vdbench [script](https://github.com/iul1an/vdbench-tests/blob/master/vdbench/vdbench#L39)
 * You can simulate a test without actually running it:
 ```
-/vdbench-path/vdbench -f testfile.vdb -s
+/opt/vdbench -f testfile.vdb -s
 ```
 
