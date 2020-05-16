@@ -63,6 +63,6 @@ The results are in the "results" directory.
 * There is a [Vdbench manual](https://github.com/iul1an/vdbench-tests/blob/master/docs/manual.pdf) in this repo which will help you modify the tests according to your needs, if you set a very large number of files in tests, make sure to also update the Java HEAP size in the vdbench [script](https://github.com/iul1an/vdbench-tests/blob/master/vdbench/vdbench#L39)
 * You can simulate a test without actually running it:
 ```
-/opt/vdbench -f testfile.vdb -s
+/opt/vdbench-tests/vdbench/vdbench -f testfile.vdb -s
 ```
 
