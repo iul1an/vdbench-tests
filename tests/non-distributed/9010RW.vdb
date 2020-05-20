@@ -1,4 +1,4 @@
-# Run paralell random read and write operations for 2H, after format, using 1M files
+# Run paralell random read and write operations for 1H, after format, using 1M files
 # Reads:  90%
 # Writes: 10%
 # This test can only run on one host. Use of FWD skew= currently not supported when running multi-JVM
@@ -23,4 +23,4 @@ fwd=fwd1,host=hd1,fsd=fsd1,xfersize=(8k,67,16k,24,24k,3,32k,2,64k,2,96k,1,128k,1
 fwd=fwd2,host=hd1,fsd=fsd1,xfersize=(8k,67,16k,24,24k,3,32k,2,64k,2,96k,1,128k,1),threads=25,fileio=(random,shared),rdpct=0,operation=write,skew=10
 
 # run definitions
-rd=rd1,fwd=(fwd1,fwd2),fwdrate=max,format=yes,elapsed=2h,interval=60
+rd=rd1,fwd=(fwd1,fwd2),fwdrate=max,format=yes,elapsed=1h,interval=60

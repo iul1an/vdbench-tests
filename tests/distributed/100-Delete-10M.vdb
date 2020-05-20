@@ -1,4 +1,4 @@
-# Run paralell random delete operations for 2H, after format, using 10M files evenly spread accross 2 hosts
+# Run paralell random delete operations for 1H, after format, using 10M files evenly spread accross 2 hosts
 # The hosts needs to share the same storage for the test's totals to be relevant
 
 # total files per anchor = width ^ depth * files
@@ -26,4 +26,4 @@ fwd=fwd1,host=hd1,fsd=fsd1
 fwd=fwd2,host=hd2,fsd=fsd2
 
 # run definition
-rd=rd1,fwd=fwd*,fwdrate=max,format=yes,elapsed=2h,interval=60
+rd=rd1,fwd=fwd*,fwdrate=max,format=yes,elapsed=1h,interval=60
